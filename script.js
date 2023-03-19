@@ -1,15 +1,17 @@
 
 
 // Assignment Code
+// this are the arrays that I need to generate a password
 var specialCharactersArr = ['!','"','#','$','%','&','\'','(',')','*','+','-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~'];
 var numberArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var lowerCaseArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperCaseArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 // This function choses the criteria for our random code
 function passWordCriteria (){
-var passwordlength = prompt("What length would you like your password to be? Choose a number between 8-128")
+  // Will turn the string into a number!
+var passwordlength =parseInt(prompt("What length would you like your password to be? Choose a number between 8-128"))
 while (isNaN(passwordlength)|| passwordlength<8 || passwordlength>128) {
-  passwordlength = prompt(`You chose "${passwordlength}"! Please try again! Choose a number with a length of at least 8 characters and no more than 128 characters`)
+  passwordlength = parseInt(prompt(` "${passwordlength}" is not an adequate password! Please try again! Choose a number with a length of at least 8 characters and no more than 128 characters`))
   
 }
 var specialCharactersType = confirm("Would you like the password to contain Special Characters? Example(? ,! , #, etc...)")
@@ -21,7 +23,7 @@ if (!(specialCharactersType || numberType || lowerCaseType || upperCaseType)) {
   alert("You must select at least one character type!");
   return passWordCriteria();
 }
-
+// I put the confirmations into an object to access them later
 var typeSelection = {
   length: passwordlength,
   itsSpecial : specialCharactersType,
@@ -38,6 +40,7 @@ function generatePassword(){
   var possibleTypes = [];
   var password = "";
   if(typeSelection.itsSpecial){
+    // this pushes the special characters into the empty array that I made earlier(possibleTypes) ... in the parameters takes in multiple arguments
     possibleTypes.push(...specialCharactersArr)
   }
   if (typeSelection.itsNumber){
